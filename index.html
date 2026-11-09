@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krishi Mulani | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #05070c;
+  --blue: #58c7ff;
+  --cyan: #8af4ec;
+  --white: #f3f5fb;
+  --muted: #9aa5b8;
+  --line: rgba(190,215,255,.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Manrope', sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  width: min(1200px, 90%);
+  margin: auto;
+}
+
+.mono {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.accent { color: var(--blue); }
+
+/* SCROLL PROGRESS */
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg,var(--blue),var(--cyan));
+  z-index: 100;
+}
+
+/* NAVBAR */
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  background: rgba(5,7,12,.7);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid transparent;
+  transition: .3s;
+}
+
+header.scrolled {
+  border-color: var(--line);
+}
+
+.nav {
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.logo span { color: var(--blue); }
+
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  font-size: 12px;
+  color: #c4cada;
+  transition: .3s;
+}
+
+nav a:hover { color: var(--blue); }
+
+.nav-button {
+  border: 1px solid var(--line);
+  padding: 10px 15px;
+  font-size: 12px;
+}
+
+.menu {
+  display: none;
+  background: none;
+  color: white;
+  border: 0;
+  font-size: 25px;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 75% 50%,rgba(0,100,220,.2),transparent 40%),
+    linear-gradient(110deg,#05070c,#071020);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(120,170,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(120,170,255,.04) 1px,transparent 1px);
+  background-size: 70px 70px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 80px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #71efc5;
+  box-shadow: 0 0 15px #71efc5;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% { opacity: .3; }
+}
+
+.hero h1 {
+  font-size: clamp(60px,9vw,125px);
+  line-height: .92;
+  letter-spacing: -9px;
+  font-weight: 700;
+}
+
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+}
+
+.blue { color: var(--blue); }
+
+.hero-description {
+  max-width: 430px;
+  color: #b2bdce;
+  line-height: 1.8;
+  font-size: 15px;
+  margin: 30px 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  transition: .3s;
+}
+
+.btn.primary {
+  background: var(--blue);
+  color: #06101a;
+  font-weight: 800;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  border-color: var(--blue);
+}
+
+/* ANIMATED PORTAL */
+
+.hero-art {
+  position: absolute;
+  right: 8%;
+  top: 22%;
+  width: 400px;
+  height: 400px;
+  display: grid;
+  place-items: center;
+}
+
+.portal {
+  width: 55%;
+  height: 75%;
+  border: 12px solid #72e4ef;
+  border-radius: 45% 45% 8% 8%;
+  transform: rotateY(-20deg);
+  box-shadow:
+    0 0 25px #2cc9ff,
+    0 0 90px rgba(0,145,255,.6),
+    inset 0 0 30px rgba(100,245,255,.5);
+  animation: float 5s ease-in-out infinite;
+}
+
+.orbit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(89,199,255,.3);
+  border-radius: 50%;
+  transform: rotateX(65deg);
+  animation: spin 18s linear infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-20px) rotateY(-20deg); }
+}
+
+@keyframes spin {
+  to { transform: rotateX(65deg) rotateZ(360deg); }
+}
+
+.hero-bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* MOVING TEXT */
+
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  padding: 20px 0;
+  background: #080c14;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.marquee span {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  padding: 0 30px;
+  color: #a9b7cb;
+}
+
+.marquee b { color: var(--blue); }
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* GENERAL SECTIONS */
+
+section:not(.hero) {
+  padding: 120px 0;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  margin-bottom: 55px;
+}
+
+.section-heading h2 {
+  font-size: clamp(42px,6vw,75px);
+  line-height: 1;
+  letter-spacing: -5px;
+  margin-top: 15px;
+}
+
+.section-note {
+  max-width: 300px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ABOUT */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 10%;
+}
+
+.about-main {
+  font-size: clamp(23px,3vw,34px);
+  line-height: 1.45;
+  letter-spacing: -1px;
+}
+
+.about-main strong { color: var(--blue); }
+
+.about-small {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+  margin-top: 25px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.info-row span:first-child { color: var(--muted); }
+
+/* PROJECTS */
+
+.projects {
+  background: linear-gradient(180deg,#070a11,#080d17,#05070c);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.project {
+  background: #0b111d;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition: .4s;
+}
+
+.project:nth-child(even) { margin-top: 65px; }
+
+.project:hover {
+  transform: translateY(-8px);
+  border-color: var(--blue);
+}
+
+.project-image {
+  height: 230px;
+  background:
+    radial-gradient(circle,rgba(32,145,255,.4),transparent 60%),
+    linear-gradient(135deg,#0d1b31,#080b12);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image::after {
+  content: "";
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  border: 1px solid rgba(116,223,255,.7);
+  border-radius: 30px;
+  box-shadow: 0 0 50px rgba(0,145,255,.3);
+  animation: spin 20s linear infinite;
+}
+
+.project-symbol {
+  font-family: 'DM Mono', monospace;
+  font-size: 38px;
+  color: var(--cyan);
+  z-index: 2;
+}
+
+.project-content { padding: 25px; }
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.project h3 {
+  font-size: 27px;
+  margin: 18px 0 10px;
+  letter-spacing: -1px;
+}
+
+.project p {
+  font-size: 13px;
+  color: #aab5c7;
+  line-height: 1.8;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.tags span {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #a9dfff;
+  border: 1px solid rgba(88,199,255,.2);
+  padding: 7px;
+}
+
+/* SKILLS */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 10%;
+}
+
+.skill-intro {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.skill {
+  display: grid;
+  grid-template-columns: 45px 1fr auto;
+  gap: 15px;
+  align-items: center;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.skill h3 { font-size: 19px; }
+
+.skill p {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.skill-number {
+  color: var(--blue);
+  font-family: 'DM Mono', monospace;
+}
+
+.skill-status {
+  color: #8fe5d3;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+}
+
+/* EDUCATION */
+
+.timeline {
+  border-left: 1px solid rgba(88,199,255,.4);
+  margin-left: 8px;
+  padding-left: 35px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 45px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -41px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 15px var(--blue);
+}
+
+.timeline-item h3 {
+  font-size: 23px;
+  margin: 10px 0;
+}
+
+.timeline-item p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+/* CONTACT */
+
+.contact {
+  background:
+    radial-gradient(ellipse at 50% 100%,rgba(0,101,193,.2),transparent 55%),
+    #070a11;
+}
+
+.contact-box {
+  border: 1px solid var(--line);
+  padding: clamp(30px,6vw,75px);
+}
+
+.contact h2 {
+  font-size: clamp(55px,9vw,105px);
+  line-height: .95;
+  letter-spacing: -7px;
+  margin: 25px 0;
+}
+
+.contact h2 span { color: var(--blue); }
+
+.contact-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+}
+
+.contact-bottom p {
+  max-width: 350px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.contact-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 35px;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+}
+
+/* REVEAL ANIMATIONS */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity .8s ease,transform .8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px) {
+  .hero-art {
+    right: -20%;
+    opacity: .4;
+    width: 300px;
+  }
+
+  .hero h1 {
+    font-size: clamp(55px,14vw,90px);
+    letter-spacing: -5px;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    padding: 25px;
+    background: #080c14;
+    flex-direction: column;
+  }
+
+  nav.open { display: flex; }
+  .menu { display: block; }
+  .nav-button { display: none; }
+
+  .about-grid,
+  .skills-grid,
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project:nth-child(even) { margin-top: 0; }
+
+  .section-heading {
+    display: block;
+  }
+
+  .section-note { margin-top: 20px; }
+
+  .contact-bottom { display: block; }
+  .contact-links { margin-top: 25px; }
+
+  .hero-bottom span:last-child { display: none; }
+
+  section:not(.hero) { padding: 85px 0; }
+
+  footer {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress" id="progress"></div>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#home" class="logo">KRISHI<span>.</span></a>
+
+    <nav id="nav">
+      <a href="#about">The Mind</a>
+      <a href="#work">Selected Work</a>
+      <a href="#skills">Capabilities</a>
+      <a href="#journey">Education</a>
+      <a href="#contact">Let's Talk ↗</a>
+    </nav>
+
+    <a href="#contact" class="nav-button">Get in touch ↗</a>
+    <button class="menu" id="menu">☰</button>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+
+  <div class="wrap hero-content">
+    <div class="eyebrow mono">
+      <i class="dot"></i>
+      First-year CSE · AI & Machine Learning
+    </div>
+
+    <h1>
+      CURIOUS<br>
+      BY <span class="outline">DESIGN.</span><br>
+      <span class="blue">BUILT</span> TO<br>
+      EXPLORE<span class="blue">.</span>
+    </h1>
+
+    <p class="hero-description">
+      I'm Krishi — a computer science student exploring
+      the space between intelligent software, thoughtful
+      design and things that work in the real world.
+    </p>
+
+    <div class="buttons">
+      <a href="#work" class="btn primary">Explore my work ↘</a>
+      <a href="#about" class="btn">A little about me ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-art">
+    <div class="orbit"></div>
+    <div class="portal"></div>
+  </div>
+
+  <div class="hero-bottom mono">
+    <span>GANDHINAGAR, INDIA</span>
+    <span>SCROLL TO DISCOVER ↓</span>
+    <span>01 — 05</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>AI & MACHINE LEARNING <b>✳</b></span>
+    <span>SOFTWARE EXPLORATION <b>✳</b></span>
+    <span>BUILDING WITH CURIOSITY <b>✳</b></span>
+    <span>IDEAS INTO INTERFACES <b>✳</b></span>
+    <span>AI & MACHINE LEARNING <b>✳</b></span>
+    <span>SOFTWARE EXPLORATION <b>✳</b></span>
+    <span>BUILDING WITH CURIOSITY <b>✳</b></span>
+    <span>IDEAS INTO INTERFACES <b>✳</b></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+
+<section id="about">
+  <div class="wrap">
+
+    <div class="section-heading reveal">
+      <div>
+        <div class="mono">01 / THE MIND</div>
+        <h2>Learning by<br><span class="accent">making things.</span></h2>
+      </div>
+
+      <p class="section-note">
+        A curious mind, a growing skill set, and a habit
+        of turning questions into small experiments.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-main">
+          I'm a first-year
+          <strong>Computer Science Engineering</strong>
+          student specialising in
+          <strong>AI & Machine Learning</strong>
+          at Karnavati University.
+        </div>
+
+        <p class="about-small">
+          I'm at the beginning of my engineering journey:
+          strengthening my programming foundations, learning
+          how intelligent systems work, and exploring how
+          software can solve practical problems. I enjoy
+          building, testing, making mistakes, and understanding
+          why things work.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <div class="info-row"><span>Currently</span><span>B.Tech · CSE (AI & ML)</span></div>
+        <div class="info-row"><span>University</span><span>Karnavati University</span></div>
+        <div class="info-row"><span>Based in</span><span>Gandhinagar, Gujarat</span></div>
+        <div class="info-row"><span>Graduation</span><span>Expected 2030</span></div>
+        <div class="info-row"><span>Mindset</span><span>Always learning ↗</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+
+<section class="projects" id="work">
+  <div class="wrap">
+
+    <div class="section-heading reveal">
+      <div>
+        <div class="mono">02 / SELECTED WORK</div>
+        <h2>Ideas in<br><span class="accent">progress.</span></h2>
+      </div>
+
+      <p class="section-note">
+        Projects and concepts that reflect what I'm learning.
+        Some are in progress, others are early explorations.
+      </p>
+    </div>
+
+    <div class="project-grid">
+
+      <article class="project reveal">
+        <div class="project-image">
+          <span class="project-symbol">₹</span>
+        </div>
+
+        <div class="project-content">
+          <div class="project-meta">
+            <span>IN PROGRESS</span>
+            <span>01 / WEB + AI</span>
+          </div>
+
+          <h3>PricePilot</h3>
+
+          <p>
+            A smart price-comparison platform concept exploring
+            how AI can help shoppers compare products and make
+            more informed buying decisions.
+          </p>
+
+          <div class="tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>AI Concepts</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-image">
+          <span class="project-symbol">◷</span>
+        </div>
+
+        <div class="project-content">
+          <div class="project-meta">
+            <span>DTI CONCEPT</span>
+            <span>02 / EMBEDDED</span>
+          </div>
+
+          <h3>Smart Study Calendar</h3>
+
+          <p>
+            An ESP32-based calendar concept using LEDs,
+            a display and reminders to make academic deadlines
+            easier to track.
+          </p>
+
+          <div class="tags">
+            <span>ESP32-S3</span>
+            <span>WS2812B</span>
+            <span>OLED</span>
+            <span>Embedded C++</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-image">
+          <span class="project-symbol">P</span>
+        </div>
+
+        <div class="project-content">
+          <div class="project-meta">
+            <span>MINI PROJECT</span>
+            <span>03 / C PROGRAMMING</span>
+          </div>
+
+          <h3>Smart Parking System</h3>
+
+          <p>
+            A Turbo C mini-project designed to manage parking
+            slots, vehicle entry and exit, and basic parking-fee
+            calculations.
+          </p>
+
+          <div class="tags">
+            <span>C</span>
+            <span>Turbo C</span>
+            <span>Logic Building</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-image">
+          <span class="project-symbol">RAG</span>
+        </div>
+
+        <div class="project-content">
+          <div class="project-meta">
+            <span>ACADEMIC WORK</span>
+            <span>04 / GENERATIVE AI</span>
+          </div>
+
+          <h3>Retrieval-Augmented Generation</h3>
+
+          <p>
+            A team presentation exploring how retrieval systems
+            can provide relevant context to generative AI for
+            more grounded responses.
+          </p>
+
+          <div class="tags">
+            <span>RAG</span>
+            <span>Generative AI</span>
+            <span>Research</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+  <div class="wrap">
+
+    <div class="section-heading reveal">
+      <div>
+        <div class="mono">03 / CAPABILITIES</div>
+        <h2>A toolkit<br>under <span class="accent">construction.</span></h2>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+
+      <p class="skill-intro reveal">
+        I'm building breadth before claiming depth.
+        These are the tools and topics I've started working
+        with through coursework, experiments and early projects.
+      </p>
+
+      <div class="reveal">
+
+        <div class="skill">
+          <span class="skill-number">01</span>
+          <div>
+            <h3>Programming</h3>
+            <p>C · Python fundamentals · Programming logic</p>
+          </div>
+          <span class="skill-status">LEARNING</span>
+        </div>
+
+        <div class="skill">
+          <span class="skill-number">02</span>
+          <div>
+            <h3>Web Development</h3>
+            <p>HTML · CSS · JavaScript fundamentals</p>
+          </div>
+          <span class="skill-status">EXPLORING</span>
+        </div>
+
+        <div class="skill">
+          <span class="skill-number">03</span>
+          <div>
+            <h3>AI & Machine Learning</h3>
+            <p>AI fundamentals · ML workflow · EDA · GenAI</p>
+          </div>
+          <span class="skill-status">STUDYING</span>
+        </div>
+
+        <div class="skill">
+          <span class="skill-number">04</span>
+          <div>
+            <h3>Embedded Systems</h3>
+            <p>Arduino · ESP32 · NeoPixel · Electronics</p>
+          </div>
+          <span class="skill-status">EXPLORING</span>
+        </div>
+
+        <div class="skill">
+          <span class="skill-number">05</span>
+          <div>
+            <h3>Problem Solving</h3>
+            <p>Debugging · Research · Programming logic</p>
+          </div>
+          <span class="skill-status">PRACTISING</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+
+<section id="journey">
+  <div class="wrap">
+
+    <div class="section-heading reveal">
+      <div>
+        <div class="mono">04 / THE FOUNDATION</div>
+        <h2>One step at<br>a <span class="accent">time.</span></h2>
+      </div>
+
+      <p class="section-note">
+        The learning path so far — and the chapter I'm writing now.
+      </p>
+    </div>
+
+    <div class="timeline reveal">
+
+      <div class="timeline-item">
+        <div class="mono">2026 — 2030 / CURRENT</div>
+        <h3>B.Tech · Computer Science Engineering</h3>
+        <p>
+          <strong>Karnavati University</strong> · Specialisation
+          in Artificial Intelligence & Machine Learning.
+          Building foundations in programming, mathematics,
+          computer science and AI through coursework and projects.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="mono">COMPLETED / CLASS XII</div>
+        <h3>Higher Secondary Education</h3>
+        <p>
+          <strong>Pioneer · GSEB</strong> — completed Class 12
+          with 78% before beginning my engineering journey.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+  <div class="wrap">
+
+    <div class="contact-box reveal">
+      <div class="mono">05 / OPEN CONNECTION</div>
+
+      <h2>
+        Let's make<br>
+        something <span>matter.</span>
+      </h2>
+
+      <div class="contact-bottom">
+
+        <p>
+          Have an interesting idea, a project to collaborate on,
+          or just want to talk about technology? I'm always open
+          to a good conversation.
+        </p>
+
+        <div class="contact-links">
+          <!-- Replace YOUR_EMAIL_HERE with your email -->
+          <a class="btn primary" href="mailto:YOUR_EMAIL_HERE">Email me ↗</a>
+
+          <!-- Replace these with your actual profile links -->
+          <a class="btn" href="https://www.linkedin.com/" target="_blank">LinkedIn ↗</a>
+          <a class="btn" href="https://github.com/" target="_blank">GitHub ↗</a>
+        </div>
+
+      </div>
+    </div>
+
+    <footer>
+      <span>© 2026 KRISHI MULANI</span>
+      <span>MADE WITH CURIOSITY · GANDHINAGAR, INDIA</span>
+      <a href="#home">BACK TO TOP ↑</a>
+    </footer>
+
+  </div>
+</section>
+
+</main>
+
+<script>
+
+// SCROLL PROGRESS + NAVBAR
+
+const header = document.getElementById("header");
+const progress = document.getElementById("progress");
+
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const maxScroll =
+    document.documentElement.scrollHeight - window.innerHeight;
+
+  header.classList.toggle("scrolled", scrollTop > 30);
+
+  progress.style.width =
+    (maxScroll ? scrollTop / maxScroll * 100 : 0) + "%";
+});
+
+// SCROLL REVEAL ANIMATION
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+  observer.observe(element);
+});
+
+// MOBILE MENU
+
+const menu = document.getElementById("menu");
+const nav = document.getElementById("nav");
+
+menu.addEventListener("click", () => {
+  nav.classList.toggle("open");
+});
+
+nav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("open");
+  });
+});
+
+// PROJECT CARD TILT EFFECT
+
+document.querySelectorAll(".project").forEach(card => {
+
+  card.addEventListener("pointermove", event => {
+
+    if (window.innerWidth < 800) return;
+
+    const rect = card.getBoundingClientRect();
+
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    card.style.transform =
+      `perspective(900px) rotateY(${x * 4}deg)
+       rotateX(${-y * 4}deg) translateY(-5px)`;
+
+  });
+
+  card.addEventListener("pointerleave", () => {
+    card.style.transform = "";
+  });
+
+});
+
+</script>
+
+</body>
+</html>
